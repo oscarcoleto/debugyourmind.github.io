@@ -6,7 +6,8 @@ const quotes = [
   "“Debugging es como ser detective en un crimen que tú mismo cometiste.”",
   "“No eres tú, es el cache.”",
   "“Codear sin café es como un servidor sin energía.”",
-  "“El commit más valiente: ‘final_final_fix_ahora_sí.js’.”"
+  "“El commit más valiente: ‘final_final_fix_ahora_sí.js’.",
+  "“Debuguea tu mente, no permitas tu error 500.",
 ];
 
 const quoteEl = document.getElementById("quote");
