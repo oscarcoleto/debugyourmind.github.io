@@ -8,21 +8,47 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh; /* más seguro que height:100vh en móviles */
   text-align: center;
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 600px;
+  width: 90%;
+  margin: auto;
 }
 
 h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
   color: #00ff99;
+  text-align: center;
 }
 
-p {
+p#quote {
   font-size: 1.2rem;
-  margin: 1rem;
-  min-height: 60px;
+  margin: 0;
+  min-height: 70px;
   transition: opacity 0.3s ease;
+  max-width: 90%;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 button {
@@ -33,16 +59,192 @@ button {
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  font-weight: 600;
 }
 
 button:hover {
   background: #00cc7a;
+  transform: scale(1.05);
 }
 
+button:active {
+  transform: scale(0.95);
+}
+
+/* Botón de favorito */
+.favorite-btn {
+  background: transparent;
+  border: 2px solid #00ff99;
+  color: #00ff99;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.3rem;
+  min-width: 50px;
+}
+
+.favorite-btn.active {
+  background: #00ff99;
+  color: #111;
+}
+
+/* Botón de mostrar favoritos */
+.show-favorites-btn {
+  background: #6c63ff;
+  color: #fff;
+}
+
+.show-favorites-btn:hover {
+  background: #5a52e0;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0; /* equivale a top:0; left:0; right:0; bottom:0 */
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 255, 153, 0.2);
+  border: 2px solid #00ff99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 2px solid #333;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #00ff99;
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #ff4444;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #ff4444;
+  transform: rotate(90deg);
+}
+
+/* Lista de favoritos */
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.no-favorites {
+  text-align: center;
+  color: #888;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.favorite-item {
+  background: rgba(0, 255, 153, 0.05);
+  border: 1px solid #00ff99;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.favorite-item:hover {
+  background: rgba(0, 255, 153, 0.1);
+  transform: translateX(5px);
+}
+
+.favorite-quote {
+  margin: 0;
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.delete-favorite {
+  background: transparent;
+  color: #ff4444;
+  border: 2px solid #ff4444;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.delete-favorite:hover {
+  background: #ff4444;
+  color: #fff;
+}
+
+/* Footer */
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 15px;
   font-size: 0.8rem;
   color: #aaa;
+  width: 100%;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    width: 95%;
+  }
+
+  .button-container {
+    gap: 0.5rem;
+  }
+
+  button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .favorite-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delete-favorite {
+    align-self: flex-end;
+  }
 }
