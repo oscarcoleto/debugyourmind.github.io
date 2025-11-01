@@ -3,36 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>  💭 Debug Your Mind</title>
+  <title>💭 Debug Your Mind</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>Debug Your Mind 💡</h1>
-    <p id="quote"></p>
-
-    <div class="button-container">
-      <button id="new-quote">Nueva frase</button>
-      <button id="favorite-btn" class="favorite-btn" title="Guardar como favorito">❤️</button>
-      <button id="show-favorites" class="show-favorites-btn" title="Ver favoritos">📋 Mis Favoritos</button>
-    </div>
-  </main>
-
-  <!-- Modal de favoritos -->
-  <div id="favorites-modal" class="modal hidden">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Mis Frases Favoritas ❤️</h2>
-        <button id="close-modal" class="close-btn">✕</button>
+  <!-- Barra de estadísticas superior -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-icon">🔥</span>
+      <div class="stat-info">
+        <span class="stat-label">Racha</span>
+        <span class="stat-value" id="streak-count">0</span>
       </div>
-      <div id="favorites-list" class="favorites-list">
-        <p class="no-favorites">No tienes frases favoritas aún. ¡Empieza a guardar tus favoritas!</p>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">📖</span>
+      <div class="stat-info">
+        <span class="stat-label">Leídas</span>
+        <span class="stat-value" id="read-count">0</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">❤️</span>
+      <div class="stat-info">
+        <span class="stat-label">Favoritas</span>
+        <span class="stat-value" id="fav-count">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor principal con pestañas -->
+  <div class="container">
+    <!-- Navegación de pestañas -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="home">
+        <span class="tab-icon">💡</span>
+        <span class="tab-label">Frases</span>
+      </button>
+      <button class="tab" data-tab="challenges">
+        <span class="tab-icon">🧩</span>
+        <span class="tab-label">Desafíos</span>
+      </button>
+      <button class="tab" data-tab="favorites">
+        <span class="tab-icon">❤️</span>
+        <span class="tab-label">Favoritos</span>
+      </button>
+      <button class="tab" data-tab="achievements">
+        <span class="tab-icon">🏆</span>
+        <span class="tab-label">Logros</span>
+      </button>
+    </nav>
+
+    <!-- Vista de Inicio -->
+    <div class="view active" id="home-view">
+      <h1>Debug Your Mind</h1>
+
+      <!-- Categoría actual -->
+      <div class="category-badge" id="current-category">
+        💭 Todas las frases
+      </div>
+
+      <!-- Frase principal -->
+      <div class="quote-card">
+        <p id="quote" class="quote-text">Cargando...</p>
+      </div>
+
+      <!-- Controles -->
+      <div class="controls">
+        <button id="favorite-btn" class="control-btn favorite-btn" title="Guardar favorito">
+          <span class="btn-icon">🤍</span>
+        </button>
+        <button id="new-quote" class="control-btn primary-btn">
+          <span class="btn-icon">✨</span>
+          <span class="btn-text">Nueva Frase</span>
+        </button>
+        <button id="share-btn" class="control-btn share-btn" title="Compartir">
+          <span class="btn-icon">📤</span>
+        </button>
+      </div>
+
+      <!-- Filtros de categorías -->
+      <div class="category-filters">
+        <button class="category-btn active" data-category="all">Todas</button>
+        <button class="category-btn" data-category="motivacion">Motivación</button>
+        <button class="category-btn" data-category="humor">Humor</button>
+        <button class="category-btn" data-category="reflexion">Reflexión</button>
+      </div>
+    </div>
+
+    <!-- Vista de Desafíos -->
+    <div class="view" id="challenges-view">
+      <h2 class="view-title">🧩 Desafíos de Código</h2>
+
+      <!-- Tipo de desafío -->
+      <div class="challenge-type-selector">
+        <button class="type-btn active" data-type="all">Todos</button>
+        <button class="type-btn" data-type="logic">Lógica</button>
+        <button class="type-btn" data-type="code">¿Qué imprime?</button>
+        <button class="type-btn" data-type="trivia">Trivia</button>
+      </div>
+
+      <!-- Tarjeta de desafío -->
+      <div class="challenge-card">
+        <div class="challenge-header">
+          <span class="challenge-badge" id="challenge-type-badge">🤔 Lógica</span>
+          <span class="challenge-difficulty" id="challenge-difficulty">●●○</span>
+        </div>
+
+        <p class="challenge-question" id="challenge-question">Cargando desafío...</p>
+
+        <!-- Código (si aplica) -->
+        <pre class="code-block hidden" id="challenge-code"><code></code></pre>
+
+        <!-- Opciones de respuesta -->
+        <div class="challenge-options" id="challenge-options">
+          <!-- Opciones generadas dinámicamente -->
+        </div>
+
+        <!-- Resultado -->
+        <div class="challenge-result hidden" id="challenge-result">
+          <div class="result-content">
+            <span class="result-icon"></span>
+            <p class="result-text"></p>
+            <p class="result-explanation"></p>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="challenge-actions">
+          <button id="reveal-answer-btn" class="action-btn secondary-btn">
+            <span class="btn-icon">💡</span>
+            <span class="btn-text">Ver Respuesta</span>
+          </button>
+          <button id="next-challenge-btn" class="action-btn primary-btn">
+            <span class="btn-icon">🎯</span>
+            <span class="btn-text">Siguiente Desafío</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Estadísticas de desafíos -->
+      <div class="challenge-stats">
+        <div class="challenge-stat">
+          <span class="stat-number" id="challenges-solved">0</span>
+          <span class="stat-text">Resueltos</span>
+        </div>
+        <div class="challenge-stat">
+          <span class="stat-number" id="challenges-accuracy">0%</span>
+          <span class="stat-text">Precisión</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vista de Favoritos -->
+    <div class="view" id="favorites-view">
+      <h2 class="view-title">Mis Frases Favoritas</h2>
+      <div id="favorites-list" class="favorites-grid">
+        <div class="empty-state">
+          <span class="empty-icon">💔</span>
+          <p>No tienes frases favoritas aún</p>
+          <p class="empty-hint">Toca el corazón en tus frases preferidas</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vista de Logros -->
+    <div class="view" id="achievements-view">
+      <h2 class="view-title">Tus Logros</h2>
+      <div id="achievements-list" class="achievements-grid">
+        <!-- Los logros se generan dinámicamente -->
       </div>
     </div>
   </div>
 
   <footer>
-    <small>Hecho con ❤️ para programadores — Debug Your Mind </small>
+    <small>Hecho con ❤️ para programadores — Debug Your Mind</small>
   </footer>
 
   <script src="scripts.js"></script>
