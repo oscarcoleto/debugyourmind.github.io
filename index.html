@@ -17,17 +17,17 @@
       </div>
     </div>
     <div class="stat-item">
-      <span class="stat-icon">📖</span>
+      <span class="stat-icon">🧩</span>
       <div class="stat-info">
-        <span class="stat-label">Leídas</span>
-        <span class="stat-value" id="read-count">0</span>
+        <span class="stat-label">Completados</span>
+        <span class="stat-value" id="solved-count">0</span>
       </div>
     </div>
     <div class="stat-item">
-      <span class="stat-icon">❤️</span>
+      <span class="stat-icon">🎯</span>
       <div class="stat-info">
-        <span class="stat-label">Favoritas</span>
-        <span class="stat-value" id="fav-count">0</span>
+        <span class="stat-label">Precisión</span>
+        <span class="stat-value" id="accuracy-count">0%</span>
       </div>
     </div>
   </div>
@@ -36,60 +36,23 @@
   <div class="container">
     <!-- Navegación de pestañas -->
     <nav class="tabs">
-      <button class="tab active" data-tab="home">
-        <span class="tab-icon">💡</span>
-        <span class="tab-label">Frases</span>
-      </button>
-      <button class="tab" data-tab="challenges">
+      <button class="tab active" data-tab="challenges">
         <span class="tab-icon">🧩</span>
         <span class="tab-label">Desafíos</span>
-      </button>
-      <button class="tab" data-tab="favorites">
-        <span class="tab-icon">❤️</span>
-        <span class="tab-label">Favoritos</span>
       </button>
       <button class="tab" data-tab="achievements">
         <span class="tab-icon">🏆</span>
         <span class="tab-label">Logros</span>
       </button>
+      <button class="tab" data-tab="ranking">
+        <span class="tab-icon">📊</span>
+        <span class="tab-label">Ranking</span>
+      </button>
+      <button class="tab" data-tab="stats">
+        <span class="tab-icon">📈</span>
+        <span class="tab-label">Stats</span>
+      </button>
     </nav>
-
-    <!-- Vista de Inicio -->
-    <div class="view active" id="home-view">
-      <h1>Debug Your Mind</h1>
-
-      <!-- Categoría actual -->
-      <div class="category-badge" id="current-category">
-        💭 Todas las frases
-      </div>
-
-      <!-- Frase principal -->
-      <div class="quote-card">
-        <p id="quote" class="quote-text">Cargando...</p>
-      </div>
-
-      <!-- Controles -->
-      <div class="controls">
-        <button id="favorite-btn" class="control-btn favorite-btn" title="Guardar favorito">
-          <span class="btn-icon">🤍</span>
-        </button>
-        <button id="new-quote" class="control-btn primary-btn">
-          <span class="btn-icon">✨</span>
-          <span class="btn-text">Nueva Frase</span>
-        </button>
-        <button id="share-btn" class="control-btn share-btn" title="Compartir">
-          <span class="btn-icon">📤</span>
-        </button>
-      </div>
-
-      <!-- Filtros de categorías -->
-      <div class="category-filters">
-        <button class="category-btn active" data-category="all">Todas</button>
-        <button class="category-btn" data-category="motivacion">Motivación</button>
-        <button class="category-btn" data-category="humor">Humor</button>
-        <button class="category-btn" data-category="reflexion">Reflexión</button>
-      </div>
-    </div>
 
     <!-- Vista de Desafíos -->
     <div class="view" id="challenges-view">
@@ -99,9 +62,17 @@
       <div class="challenge-type-selector">
         <button class="type-btn active" data-type="all">Todos</button>
         <button class="type-btn" data-type="logic">Lógica</button>
-        <button class="type-btn" data-type="code">¿Qué imprime?</button>
+        <button class="type-btn" data-type="code">Código</button>
         <button class="type-btn" data-type="trivia">Trivia</button>
+        <button class="type-btn" data-type="arrays">Arrays</button>
+        <button class="type-btn" data-type="strings">Strings</button>
+        <button class="type-btn" data-type="algorithms">Algoritmos</button>
+        <button class="type-btn" data-type="frontend">Frontend</button>
+        <button class="type-btn" data-type="backend">Backend</button>
       </div>
+
+      <!-- Badge de desafío diario -->
+      <div id="daily-challenge-badge" class="daily-badge hidden">⭐ Desafío del Día</div>
 
       <!-- Tarjeta de desafío -->
       <div class="challenge-card">
@@ -155,16 +126,9 @@
       </div>
     </div>
 
-    <!-- Vista de Favoritos -->
-    <div class="view" id="favorites-view">
-      <h2 class="view-title">Mis Frases Favoritas</h2>
-      <div id="favorites-list" class="favorites-grid">
-        <div class="empty-state">
-          <span class="empty-icon">💔</span>
-          <p>No tienes frases favoritas aún</p>
-          <p class="empty-hint">Toca el corazón en tus frases preferidas</p>
-        </div>
-      </div>
+    <!-- Vista de Estadísticas/Perfil -->
+    <div class="view" id="stats-view">
+      <!-- El contenido se genera dinámicamente en JavaScript -->
     </div>
 
     <!-- Vista de Logros -->
@@ -174,12 +138,65 @@
         <!-- Los logros se generan dinámicamente -->
       </div>
     </div>
+
+    <!-- Vista de Ranking Global -->
+    <div class="view" id="ranking-view">
+      <h2 class="view-title">🌍 Ranking Global</h2>
+
+      <!-- Sección de configuración de usuario -->
+      <div class="user-setup" id="user-setup">
+        <div class="setup-card">
+          <p class="setup-title">¡Únete al ranking global!</p>
+          <input
+            type="text"
+            id="username-input"
+            class="username-input"
+            placeholder="Elige tu nombre de usuario"
+            maxlength="20"
+          />
+          <button id="save-username-btn" class="action-btn primary-btn">
+            <span class="btn-icon">🚀</span>
+            <span class="btn-text">Unirse</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tu posición actual -->
+      <div class="my-rank-card hidden" id="my-rank-card">
+        <div class="rank-header">Tu Posición</div>
+        <div class="rank-content">
+          <div class="rank-number" id="my-rank">#-</div>
+          <div class="rank-stats">
+            <span id="my-username">-</span>
+            <span class="rank-score" id="my-score">0 pts</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de ranking -->
+      <div class="ranking-table" id="ranking-table">
+        <div class="loading-state">
+          <span class="loading-icon">⏳</span>
+          <p>Cargando ranking...</p>
+        </div>
+      </div>
+
+      <!-- Botón de sincronización -->
+      <button id="sync-btn" class="action-btn secondary-btn">
+        <span class="btn-icon">🔄</span>
+        <span class="btn-text">Sincronizar</span>
+      </button>
+    </div>
   </div>
 
   <footer>
     <small>Hecho con ❤️ para programadores — Debug Your Mind</small>
   </footer>
 
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-functions.js"></script>
   <script src="scripts.js"></script>
 </body>
 </html>

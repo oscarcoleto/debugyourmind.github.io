@@ -1,53 +1,6 @@
-// Base de frases con categorías
-const quotes = [
-  { text: "Compila tu mente antes de depurar tu código.", category: "reflexion" },
-  { text: "El error más común está entre la silla y el teclado.", category: "humor" },
-  { text: "while(!succeed) tryAgain();", category: "motivacion" },
-  { text: "A veces, apagar y encender también aplica a la vida.", category: "reflexion" },
-  { text: "Debugging es como ser detective en un crimen que tú mismo cometiste.", category: "humor" },
-  { text: "No eres tú, es el cache.", category: "humor" },
-  { text: "Codear sin café es como un servidor sin energía.", category: "humor" },
-  { text: "El commit más valiente: 'final_final_fix_ahora_sí.js'.", category: "humor" },
-  { text: "Debuguea tu mente, no permitas tu error 500.", category: "motivacion" },
-  { text: "if (vida == dura) { console.log('sigue codeando'); }", category: "motivacion" },
-  { text: "El mejor framework es la motivación.", category: "motivacion" },
-  { text: "No hay bug que un buen café no pueda posponer.", category: "humor" },
-  { text: "Tu código puede fallar, pero tú no te rindas.", category: "motivacion" },
-  { text: "breakpoints en el código, pausas en la vida.", category: "reflexion" },
-  { text: "El mejor parche para un mal día: git reset --hard y dormir bien.", category: "reflexion" },
-  { text: "Commit temprano, commit seguido, commit sin miedo.", category: "motivacion" },
-  { text: "La depresión no se resuelve con npm install felicidad, pero se intenta.", category: "reflexion" },
-  { text: "A veces la vida no compila… revisa tus dependencias emocionales.", category: "reflexion" },
-  { text: "console.log('Confía en ti');", category: "motivacion" },
-  { text: "Menos estrés, más expresiones lambda.", category: "reflexion" },
-  { text: "Un bug al día mantiene la humildad.", category: "humor" },
-  { text: "Tu valor no depende del coverage.", category: "motivacion" },
-  { text: "Error 404: Motivación no encontrada (reintenta con un café).", category: "humor" },
-  { text: "Refactoriza tus pensamientos negativos.", category: "motivacion" },
-  { text: "Siempre hay un 'else' para cada problema.", category: "reflexion" },
-  { text: "Hay días que no corren… pero igual se compilan.", category: "humor" },
-  { text: "Sé como un servidor: mantente en línea incluso bajo presión.", category: "motivacion" },
-  { text: "Ctrl + S tus logros, Ctrl + Z tus errores.", category: "reflexion" },
-  { text: "return felicidad; // y sigue adelante", category: "motivacion" },
-  { text: "Nunca subestimes el poder de un buen commit y una buena siesta.", category: "humor" }
-];
-
-// Base de desafíos/acertijos
+// Base de desafíos/acertijos - App centrada en gamificación de programación
 const challenges = [
   // LÓGICA
-  {
-    type: "logic",
-    difficulty: 1,
-    question: "Si un programador sale de casa a las 8:00 AM para una reunión a 30 minutos de distancia que empieza a las 9:00 AM, ¿llegará a tiempo?",
-    options: [
-      "Sí, llegará a las 8:30 AM",
-      "No, porque antes pasará por Starbucks",
-      "Sí, pero entrará 5 minutos tarde",
-      "Depende del tráfico en Git"
-    ],
-    correct: 1,
-    explanation: "¡Correcto! Todo programador necesita su café antes de cualquier reunión. 😄☕"
-  },
   {
     type: "logic",
     difficulty: 2,
@@ -56,23 +9,10 @@ const challenges = [
       "En 6 días",
       "En 12 días",
       "En 18 días",
-      "Nunca, porque ya los arreglaste"
+      "Nunca"
     ],
     correct: 0,
-    explanation: "El MCM (Mínimo Común Múltiplo) de 2, 3 y 6 es 6. ¡Matemáticas al rescate!"
-  },
-  {
-    type: "logic",
-    difficulty: 1,
-    question: "¿Cuántos programadores hacen falta para cambiar una bombilla?",
-    options: [
-      "Ninguno, es un problema de hardware",
-      "Uno, pero necesita Stack Overflow",
-      "Dos, uno para hacerlo y otro para hacer code review",
-      "Infinitos, porque siempre encuentran un bug más"
-    ],
-    correct: 0,
-    explanation: "¡Exacto! Los programadores no tocan hardware, es culpa del equipo de infraestructura. 😂"
+    explanation: "El MCM (Mínimo Común Múltiplo) de 2, 3 y 6 es 6. Los tres servidores coincidirán cada 6 días."
   },
 
   // ¿QUÉ IMPRIME?
@@ -200,69 +140,439 @@ print([] is False)`,
     correct: 1,
     explanation: "¡Correcto! Explicar tu código en voz alta (a un pato de goma) te ayuda a encontrar errores. ¡Funciona!"
   },
+
+  // ARRAYS
+  {
+    type: "arrays",
+    difficulty: 1,
+    question: "¿Qué devuelve [1, 2, 3].map(x => x * 2)?",
+    options: [
+      "[2, 4, 6]",
+      "[1, 2, 3, 2, 4, 6]",
+      "6",
+      "Error"
+    ],
+    correct: 0,
+    explanation: "map() crea un nuevo array aplicando la función a cada elemento. Resultado: [2, 4, 6]"
+  },
+  {
+    type: "arrays",
+    difficulty: 2,
+    question: "¿Cuál es la forma correcta de eliminar duplicados de un array?",
+    options: [
+      "[...new Set(array)]",
+      "array.unique()",
+      "array.filter(x => !x)",
+      "array.removeDuplicates()"
+    ],
+    correct: 0,
+    explanation: "Set elimina duplicados automáticamente. Usar spread operator [...] convierte el Set de vuelta a array."
+  },
+  {
+    type: "arrays",
+    difficulty: 2,
+    question: "¿Qué hace [1, 2, 3].reduce((a, b) => a + b, 0)?",
+    options: [
+      "Suma todos los elementos (resultado: 6)",
+      "Devuelve el primer elemento",
+      "Multiplica todos los elementos",
+      "Error de sintaxis"
+    ],
+    correct: 0,
+    explanation: "reduce() acumula valores. En este caso suma: 0 + 1 + 2 + 3 = 6"
+  },
+  {
+    type: "arrays",
+    difficulty: 3,
+    question: "¿Qué devuelve [1, 2, 3].flat()?",
+    options: [
+      "[1, 2, 3]",
+      "6",
+      "[1, [2], [3]]",
+      "Error"
+    ],
+    correct: 0,
+    explanation: "flat() aplana arrays anidados. Como no hay anidación, devuelve [1, 2, 3]"
+  },
+
+  // STRINGS
+  {
+    type: "strings",
+    difficulty: 1,
+    question: "¿Qué devuelve 'hello'.toUpperCase()?",
+    options: [
+      "'HELLO'",
+      "'Hello'",
+      "'hello'",
+      "Error"
+    ],
+    correct: 0,
+    explanation: "toUpperCase() convierte todos los caracteres a mayúsculas."
+  },
+  {
+    type: "strings",
+    difficulty: 2,
+    question: "¿Cómo invertir un string 'abc'?",
+    options: [
+      "'abc'.split('').reverse().join('')",
+      "'abc'.reverse()",
+      "'abc'.backwards()",
+      "'abc'.flip()"
+    ],
+    correct: 0,
+    explanation: "Convertir a array con split(), invertir con reverse(), y unir con join(''). Resultado: 'cba'"
+  },
+  {
+    type: "strings",
+    difficulty: 2,
+    question: "¿Qué devuelve 'a-b-c'.split('-').length?",
+    options: [
+      "3",
+      "5",
+      "2",
+      "1"
+    ],
+    correct: 0,
+    explanation: "split('-') divide por guiones: ['a', 'b', 'c']. El array tiene length 3."
+  },
+  {
+    type: "strings",
+    difficulty: 3,
+    question: "¿Qué hace 'hello world'.replace(/o/g, '0')?",
+    options: [
+      "'hell0 w0rld'",
+      "'hello world'",
+      "'hell0 world'",
+      "Error"
+    ],
+    correct: 0,
+    explanation: "El flag 'g' (global) reemplaza TODAS las ocurrencias de 'o' con '0'."
+  },
+
+  // ALGORITHMS
+  {
+    type: "algorithms",
+    difficulty: 2,
+    question: "¿Cuál es la complejidad temporal de buscar un elemento en un array NO ordenado?",
+    options: [
+      "O(n)",
+      "O(log n)",
+      "O(1)",
+      "O(n²)"
+    ],
+    correct: 0,
+    explanation: "Debes recorrer todos los elementos en el peor caso. Complejidad lineal O(n)."
+  },
+  {
+    type: "algorithms",
+    difficulty: 3,
+    question: "¿Qué algoritmo es más eficiente para ordenar un array grande?",
+    options: [
+      "QuickSort (promedio O(n log n))",
+      "Bubble Sort (O(n²))",
+      "Selection Sort (O(n²))",
+      "Insertion Sort (O(n²))"
+    ],
+    correct: 0,
+    explanation: "QuickSort tiene complejidad O(n log n) en promedio, mucho mejor que O(n²)."
+  },
+  {
+    type: "algorithms",
+    difficulty: 2,
+    question: "¿Qué es un algoritmo recursivo?",
+    options: [
+      "Una función que se llama a sí misma",
+      "Un bucle infinito",
+      "Una función con muchos parámetros",
+      "Un algoritmo que usa arrays"
+    ],
+    correct: 0,
+    explanation: "Recursión significa que una función se llama a sí misma hasta alcanzar un caso base."
+  },
+
+  // FRONTEND
+  {
+    type: "frontend",
+    difficulty: 1,
+    question: "¿Qué hook de React se usa para manejar estado local?",
+    options: [
+      "useState",
+      "useEffect",
+      "useContext",
+      "useReducer"
+    ],
+    correct: 0,
+    explanation: "useState() es el hook básico para manejar estado local en componentes funcionales."
+  },
+  {
+    type: "frontend",
+    difficulty: 2,
+    question: "¿Qué CSS framework NO existe?",
+    options: [
+      "BootstrapReact",
+      "Tailwind",
+      "Bootstrap",
+      "Bulma"
+    ],
+    correct: 0,
+    explanation: "BootstrapReact no existe. Tailwind, Bootstrap y Bulma son frameworks reales."
+  },
+  {
+    type: "frontend",
+    difficulty: 2,
+    question: "¿Qué hace useEffect(() => {...}, [])?",
+    options: [
+      "Se ejecuta solo una vez al montar el componente",
+      "Se ejecuta en cada render",
+      "Se ejecuta solo al desmontar",
+      "Nunca se ejecuta"
+    ],
+    correct: 0,
+    explanation: "Array vacío [] significa que solo se ejecuta al montar (como componentDidMount)."
+  },
+  {
+    type: "frontend",
+    difficulty: 3,
+    question: "¿Qué es el Virtual DOM en React?",
+    options: [
+      "Una representación ligera del DOM real en memoria",
+      "Un servidor virtual",
+      "Una base de datos virtual",
+      "Un framework CSS"
+    ],
+    correct: 0,
+    explanation: "Virtual DOM es una copia del DOM en memoria que React usa para optimizar updates."
+  },
+
+  // BACKEND
+  {
+    type: "backend",
+    difficulty: 1,
+    question: "¿Qué significa REST en REST API?",
+    options: [
+      "Representational State Transfer",
+      "Remote Execution Service Technology",
+      "Rapid Endpoint Service Transfer",
+      "Real-time Execution State"
+    ],
+    correct: 0,
+    explanation: "REST significa Representational State Transfer. Es un estilo arquitectural para APIs."
+  },
+  {
+    type: "backend",
+    difficulty: 2,
+    question: "¿Qué código HTTP indica éxito?",
+    options: [
+      "200 OK",
+      "404 Not Found",
+      "500 Internal Server Error",
+      "401 Unauthorized"
+    ],
+    correct: 0,
+    explanation: "200 OK indica que la petición fue exitosa. Los 2xx son códigos de éxito."
+  },
+  {
+    type: "backend",
+    difficulty: 2,
+    question: "¿Qué es middleware en Express.js?",
+    options: [
+      "Funciones que procesan requests antes de llegar a las rutas",
+      "Una base de datos",
+      "Un framework de frontend",
+      "Un gestor de paquetes"
+    ],
+    correct: 0,
+    explanation: "Middleware son funciones que se ejecutan en orden para procesar requests/responses."
+  },
+  {
+    type: "backend",
+    difficulty: 3,
+    question: "¿Qué es SQL Injection?",
+    options: [
+      "Un ataque que inyecta código SQL malicioso",
+      "Una forma de optimizar queries",
+      "Un tipo de base de datos",
+      "Un método de autenticación"
+    ],
+    correct: 0,
+    explanation: "SQL Injection es un ataque de seguridad donde se inyecta SQL malicioso en inputs."
+  },
+
+  // MÁS CODE CHALLENGES
+  {
+    type: "code",
+    difficulty: 2,
+    question: "¿Qué imprimirá este código?",
+    code: `const obj = { a: 1 };
+const obj2 = obj;
+obj2.a = 2;
+console.log(obj.a);`,
+    options: [
+      "2",
+      "1",
+      "undefined",
+      "Error"
+    ],
+    correct: 0,
+    explanation: "obj y obj2 apuntan al mismo objeto. Modificar obj2.a también modifica obj.a."
+  },
+  {
+    type: "code",
+    difficulty: 3,
+    question: "¿Qué imprimirá este código?",
+    code: `setTimeout(() => console.log(1), 0);
+console.log(2);
+Promise.resolve().then(() => console.log(3));
+console.log(4);`,
+    options: [
+      "2, 4, 3, 1",
+      "1, 2, 3, 4",
+      "2, 3, 4, 1",
+      "1, 3, 2, 4"
+    ],
+    correct: 0,
+    explanation: "Event loop: código síncrono primero (2, 4), luego microtasks/Promises (3), luego macrotasks/setTimeout (1)."
+  },
+  {
+    type: "code",
+    difficulty: 2,
+    question: "¿Qué imprimirá?",
+    code: `const arr = [1, 2, 3];
+arr[10] = 99;
+console.log(arr.length);`,
+    options: [
+      "11",
+      "4",
+      "10",
+      "Error"
+    ],
+    correct: 0,
+    explanation: "JavaScript permite espacios vacíos en arrays. El length es el índice más alto + 1."
+  },
+
+  // MÁS TRIVIA
+  {
+    type: "trivia",
+    difficulty: 2,
+    question: "¿Qué significa 'npm'?",
+    options: [
+      "Node Package Manager",
+      "New Programming Method",
+      "Node Project Module",
+      "Network Package Manager"
+    ],
+    correct: 0,
+    explanation: "npm significa Node Package Manager. Es el gestor de paquetes de Node.js."
+  },
+  {
+    type: "trivia",
+    difficulty: 2,
+    question: "¿Quién creó Python?",
+    options: [
+      "Guido van Rossum",
+      "Brendan Eich",
+      "James Gosling",
+      "Dennis Ritchie"
+    ],
+    correct: 0,
+    explanation: "Guido van Rossum creó Python en 1991. Brendan Eich creó JavaScript."
+  },
+  {
+    type: "trivia",
+    difficulty: 3,
+    question: "¿Qué significa 'SOLID' en programación orientada a objetos?",
+    options: [
+      "5 principios de diseño de software",
+      "Un tipo de base de datos",
+      "Un framework de JavaScript",
+      "Un patrón de diseño"
+    ],
+    correct: 0,
+    explanation: "SOLID son 5 principios: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion."
+  },
+  {
+    type: "trivia",
+    difficulty: 1,
+    question: "¿Qué es Git?",
+    options: [
+      "Un sistema de control de versiones",
+      "Un lenguaje de programación",
+      "Una base de datos",
+      "Un editor de código"
+    ],
+    correct: 0,
+    explanation: "Git es un sistema de control de versiones distribuido creado por Linus Torvalds."
+  },
+
+  // MÁS LÓGICA
   {
     type: "logic",
     difficulty: 2,
-    question: "Un desarrollador tiene un problema. Decide usar expresiones regulares. Ahora tiene...",
+    question: "Un array tiene índices del 0 al 9. ¿Cuántos elementos tiene?",
     options: [
-      "Una solución elegante",
-      "Dos problemas",
-      "Un código ilegible",
-      "Todas las anteriores"
+      "10",
+      "9",
+      "11",
+      "8"
     ],
-    correct: 3,
-    explanation: "¡Todas son correctas! Es un chiste clásico de programación. Las regex son poderosas pero complejas. 😅"
+    correct: 0,
+    explanation: "Del 0 al 9 hay 10 elementos (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)."
+  },
+  {
+    type: "logic",
+    difficulty: 3,
+    question: "¿Cuántos bits hay en 1 byte?",
+    options: [
+      "8",
+      "16",
+      "4",
+      "1024"
+    ],
+    correct: 0,
+    explanation: "1 byte = 8 bits. Es una unidad fundamental en computación."
   }
 ];
 
-// Definición de logros
+// Definición de logros - Solo desafíos y racha
 const achievements = [
-  { id: "first-quote", icon: "🎯", title: "Primer Paso", desc: "Lee tu primera frase", requirement: 1, type: "read" },
-  { id: "10-quotes", icon: "📚", title: "Lector Activo", desc: "Lee 10 frases", requirement: 10, type: "read" },
-  { id: "50-quotes", icon: "🔥", title: "Devorador", desc: "Lee 50 frases", requirement: 50, type: "read" },
-  { id: "100-quotes", icon: "💯", title: "Centenario", desc: "Lee 100 frases", requirement: 100, type: "read" },
-  { id: "first-fav", icon: "❤️", title: "Primera Vez", desc: "Guarda tu primer favorito", requirement: 1, type: "favorite" },
-  { id: "10-favs", icon: "💖", title: "Coleccionista", desc: "10 frases favoritas", requirement: 10, type: "favorite" },
-  { id: "3-day-streak", icon: "🔥", title: "Constante", desc: "3 días seguidos", requirement: 3, type: "streak" },
-  { id: "7-day-streak", icon: "⚡", title: "Disciplinado", desc: "1 semana seguida", requirement: 7, type: "streak" },
-  { id: "30-day-streak", icon: "👑", title: "Leyenda", desc: "30 días seguidos", requirement: 30, type: "streak" },
   { id: "first-challenge", icon: "🧩", title: "Primer Desafío", desc: "Resuelve tu primer desafío", requirement: 1, type: "challenge" },
   { id: "10-challenges", icon: "🎯", title: "Resolutor", desc: "Resuelve 10 desafíos", requirement: 10, type: "challenge" },
+  { id: "50-challenges", icon: "🔥", title: "Maestro", desc: "Resuelve 50 desafíos", requirement: 50, type: "challenge" },
+  { id: "100-challenges", icon: "💯", title: "Leyenda del Código", desc: "Resuelve 100 desafíos", requirement: 100, type: "challenge" },
+  { id: "3-day-streak", icon: "🔥", title: "Constante", desc: "3 días seguidos", requirement: 3, type: "streak" },
+  { id: "7-day-streak", icon: "⚡", title: "Disciplinado", desc: "1 semana seguida", requirement: 7, type: "streak" },
+  { id: "30-day-streak", icon: "👑", title: "Imparable", desc: "30 días seguidos", requirement: 30, type: "streak" },
   { id: "perfect-score", icon: "💯", title: "Perfeccionista", desc: "100% de precisión en 10 desafíos", requirement: 100, type: "accuracy" }
 ];
 
 // Estado de la aplicación
 let state = {
-  currentQuote: null,
-  currentCategory: "all",
-  favorites: [],
-  readCount: 0,
   streak: 0,
   lastVisit: null,
+  lastChallengeDate: null, // Para validar racha con desafíos
   unlockedAchievements: [],
   // Desafíos
   currentChallenge: null,
   currentChallengeType: "all",
   challengesSolved: 0,
   challengesAttempted: 0,
-  challengeAnswer: null
+  challengeAnswer: null,
+  solvedChallenges: [], // IDs de desafíos ya resueltos
+  dailyChallengeCompleted: false, // Desafío diario
+  dailyChallengeDate: null,
+  // Ranking
+  username: null
 };
 
 // Elementos del DOM
 const elements = {
-  quote: document.getElementById("quote"),
-  newQuoteBtn: document.getElementById("new-quote"),
-  favoriteBtn: document.getElementById("favorite-btn"),
-  shareBtn: document.getElementById("share-btn"),
+  // Estadísticas
   streakCount: document.getElementById("streak-count"),
-  readCount: document.getElementById("read-count"),
-  favCount: document.getElementById("fav-count"),
-  currentCategoryBadge: document.getElementById("current-category"),
-  favoritesList: document.getElementById("favorites-list"),
+  solvedCount: document.getElementById("solved-count"),
+  accuracyCount: document.getElementById("accuracy-count"),
   achievementsList: document.getElementById("achievements-list"),
   tabs: document.querySelectorAll(".tab"),
   views: document.querySelectorAll(".view"),
-  categoryBtns: document.querySelectorAll(".category-btn"),
   // Desafíos
   challengeQuestion: document.getElementById("challenge-question"),
   challengeCode: document.getElementById("challenge-code"),
@@ -274,7 +584,15 @@ const elements = {
   revealAnswerBtn: document.getElementById("reveal-answer-btn"),
   challengesSolved: document.getElementById("challenges-solved"),
   challengesAccuracy: document.getElementById("challenges-accuracy"),
-  challengeTypeBtns: document.querySelectorAll(".type-btn")
+  challengeTypeBtns: document.querySelectorAll(".type-btn"),
+  dailyChallengeBadge: document.getElementById("daily-challenge-badge"),
+  // Ranking
+  usernameInput: document.getElementById("username-input"),
+  saveUsernameBtn: document.getElementById("save-username-btn"),
+  syncBtn: document.getElementById("sync-btn"),
+  rankingTable: document.getElementById("ranking-table"),
+  // Stats/Profile view
+  statsView: document.getElementById("stats-view")
 };
 
 // ===== FUNCIONES DE PERSISTENCIA =====
@@ -288,155 +606,85 @@ function loadState() {
 
 function saveState() {
   localStorage.setItem("debugYourMindState", JSON.stringify(state));
+
+  // Sincronizar con Supabase si está disponible
+  if (window.supabaseFunctions && state.username) {
+    window.supabaseFunctions.autoSync();
+  }
 }
 
-// ===== SISTEMA DE RACHAS =====
+// ===== SISTEMA DE RACHAS (basado en completar desafíos) =====
 function updateStreak() {
   const today = new Date().toDateString();
-  const lastVisit = state.lastVisit;
+  const lastChallengeDate = state.lastChallengeDate;
 
-  if (!lastVisit) {
-    // Primera visita
+  // La racha solo se actualiza cuando completas un desafío
+  // Esta función se llama desde handleChallengeAnswer cuando aciertas
+
+  if (!lastChallengeDate) {
+    // Primer desafío completado
     state.streak = 1;
-    state.lastVisit = today;
-  } else if (lastVisit === today) {
-    // Ya visitó hoy, no cambiar racha
+    state.lastChallengeDate = today;
+  } else if (lastChallengeDate === today) {
+    // Ya completó un desafío hoy, mantener racha
     return;
   } else {
-    const lastDate = new Date(lastVisit);
+    const lastDate = new Date(lastChallengeDate);
     const currentDate = new Date(today);
     const diffTime = currentDate - lastDate;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 1) {
-      // Día consecutivo
+      // Día consecutivo - incrementar racha
       state.streak++;
     } else if (diffDays > 1) {
-      // Rompió la racha
+      // Rompió la racha - resetear a 1
       state.streak = 1;
     }
 
-    state.lastVisit = today;
+    state.lastChallengeDate = today;
   }
 
   checkAchievements();
   saveState();
+  updateStats();
+}
+
+// Verificar racha al iniciar (para detectar rachas rotas)
+function checkStreakOnLoad() {
+  const today = new Date().toDateString();
+  const lastChallengeDate = state.lastChallengeDate;
+
+  if (lastChallengeDate && lastChallengeDate !== today) {
+    const lastDate = new Date(lastChallengeDate);
+    const currentDate = new Date(today);
+    const diffTime = currentDate - lastDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    // Si pasaron más de 1 día sin completar desafíos, la racha se rompe
+    if (diffDays > 1) {
+      state.streak = 0;
+      saveState();
+    }
+  }
+
   updateStats();
 }
 
 // ===== ESTADÍSTICAS =====
 function updateStats() {
-  elements.streakCount.textContent = state.streak;
-  elements.readCount.textContent = state.readCount;
-  elements.favCount.textContent = state.favorites.length;
-}
-
-// ===== SISTEMA DE FRASES =====
-function getFilteredQuotes() {
-  if (state.currentCategory === "all") {
-    return quotes;
+  if (elements.streakCount) {
+    elements.streakCount.textContent = state.streak;
   }
-  return quotes.filter(q => q.category === state.currentCategory);
-}
-
-function newQuote() {
-  const filtered = getFilteredQuotes();
-
-  if (filtered.length === 0) {
-    elements.quote.textContent = "No hay frases en esta categoría 😢";
-    return;
+  if (elements.solvedCount) {
+    elements.solvedCount.textContent = state.challengesSolved;
   }
-
-  const random = Math.floor(Math.random() * filtered.length);
-  const quote = filtered[random];
-
-  elements.quote.style.opacity = 0;
-
-  setTimeout(() => {
-    state.currentQuote = quote;
-    elements.quote.textContent = quote.text;
-    elements.quote.style.opacity = 1;
-
-    // Incrementar contador de lectura
-    state.readCount++;
-    updateStats();
-    updateFavoriteButton();
-    checkAchievements();
-    saveState();
-  }, 300);
-}
-
-// ===== SISTEMA DE FAVORITOS =====
-function toggleFavorite() {
-  if (!state.currentQuote) return;
-
-  const quoteText = state.currentQuote.text;
-  const index = state.favorites.findIndex(f => f.text === quoteText);
-
-  if (index !== -1) {
-    // Eliminar favorito
-    state.favorites.splice(index, 1);
-    elements.favoriteBtn.classList.remove("active");
-    elements.favoriteBtn.querySelector(".btn-icon").textContent = "🤍";
-  } else {
-    // Agregar favorito
-    state.favorites.push(state.currentQuote);
-    elements.favoriteBtn.classList.add("active");
-    elements.favoriteBtn.querySelector(".btn-icon").textContent = "❤️";
+  if (elements.accuracyCount) {
+    const accuracy = state.challengesAttempted > 0
+      ? Math.round((state.challengesSolved / state.challengesAttempted) * 100)
+      : 0;
+    elements.accuracyCount.textContent = `${accuracy}%`;
   }
-
-  updateStats();
-  renderFavorites();
-  checkAchievements();
-  saveState();
-}
-
-function updateFavoriteButton() {
-  if (!state.currentQuote) return;
-
-  const isFavorite = state.favorites.some(f => f.text === state.currentQuote.text);
-
-  if (isFavorite) {
-    elements.favoriteBtn.classList.add("active");
-    elements.favoriteBtn.querySelector(".btn-icon").textContent = "❤️";
-  } else {
-    elements.favoriteBtn.classList.remove("active");
-    elements.favoriteBtn.querySelector(".btn-icon").textContent = "🤍";
-  }
-}
-
-function renderFavorites() {
-  const container = elements.favoritesList;
-
-  if (state.favorites.length === 0) {
-    container.innerHTML = `
-      <div class="empty-state">
-        <span class="empty-icon">💔</span>
-        <p>No tienes frases favoritas aún</p>
-        <p class="empty-hint">Toca el corazón en tus frases preferidas</p>
-      </div>
-    `;
-    return;
-  }
-
-  container.innerHTML = state.favorites.map((quote, index) => `
-    <div class="favorite-card">
-      <p class="favorite-text">${quote.text}</p>
-      <button class="delete-btn" data-index="${index}">🗑️</button>
-    </div>
-  `).join('');
-
-  // Event listeners para botones de eliminar
-  container.querySelectorAll(".delete-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const index = parseInt(e.target.dataset.index);
-      state.favorites.splice(index, 1);
-      renderFavorites();
-      updateStats();
-      updateFavoriteButton();
-      saveState();
-    });
-  });
 }
 
 // ===== SISTEMA DE LOGROS =====
@@ -448,12 +696,6 @@ function checkAchievements() {
     let shouldUnlock = false;
 
     switch (achievement.type) {
-      case "read":
-        shouldUnlock = state.readCount >= achievement.requirement;
-        break;
-      case "favorite":
-        shouldUnlock = state.favorites.length >= achievement.requirement;
-        break;
       case "streak":
         shouldUnlock = state.streak >= achievement.requirement;
         break;
@@ -530,58 +772,80 @@ function renderAchievements() {
   }).join('');
 }
 
-// ===== SISTEMA DE CATEGORÍAS =====
-function setCategory(category) {
-  state.currentCategory = category;
+// ===== DESAFÍO DIARIO =====
+function getDailyChallengeIndex() {
+  // Generar un índice basado en la fecha actual
+  // El mismo índice para todo el día (cambia a las 00:00)
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
 
-  // Actualizar botones
-  elements.categoryBtns.forEach(btn => {
-    if (btn.dataset.category === category) {
-      btn.classList.add("active");
-    } else {
-      btn.classList.remove("active");
-    }
-  });
-
-  // Actualizar badge
-  const categoryNames = {
-    all: "💭 Todas las frases",
-    motivacion: "💪 Motivación",
-    humor: "😄 Humor",
-    reflexion: "🤔 Reflexión"
-  };
-
-  elements.currentCategoryBadge.textContent = categoryNames[category];
-
-  // Cargar nueva frase de la categoría
-  newQuote();
+  // Usar el día del año como semilla para seleccionar un desafío
+  return dayOfYear % challenges.length;
 }
 
-// ===== COMPARTIR =====
-function shareQuote() {
-  if (!state.currentQuote) return;
+function getDailyChallenge() {
+  const index = getDailyChallengeIndex();
+  return challenges[index];
+}
 
-  const text = `${state.currentQuote.text}\n\n— Debug Your Mind 💭`;
+function checkDailyChallenge() {
+  const today = new Date().toDateString();
+  const dailyChallenge = getDailyChallenge();
 
-  if (navigator.share) {
-    navigator.share({
-      title: "Debug Your Mind",
-      text: text
-    }).catch(() => {});
-  } else {
-    // Copiar al portapapeles
-    navigator.clipboard.writeText(text).then(() => {
-      showNotification("¡Frase copiada al portapapeles! 📋");
-    });
+  // Si el desafío actual es el desafío diario y aún no lo completó hoy
+  if (
+    state.currentChallenge === dailyChallenge &&
+    state.dailyChallengeDate !== today
+  ) {
+    state.dailyChallengeCompleted = true;
+    state.dailyChallengeDate = today;
+    showNotification("⭐ ¡Completaste el desafío diario! +50% de puntos");
+    saveState();
+  }
+}
+
+function updateDailyChallengeBadge() {
+  const today = new Date().toDateString();
+  const dailyChallenge = getDailyChallenge();
+
+  // Mostrar badge si el desafío actual es el diario
+  if (elements.dailyChallengeBadge && state.currentChallenge === dailyChallenge) {
+    const completed = state.dailyChallengeDate === today && state.dailyChallengeCompleted;
+    elements.dailyChallengeBadge.classList.remove('hidden');
+    elements.dailyChallengeBadge.textContent = completed ? '✅ Diario Completado' : '⭐ Desafío del Día';
+  } else if (elements.dailyChallengeBadge) {
+    elements.dailyChallengeBadge.classList.add('hidden');
   }
 }
 
 // ===== SISTEMA DE DESAFÍOS =====
+function getChallengeId(challenge) {
+  // Generar ID único basado en la pregunta
+  return challenges.indexOf(challenge);
+}
+
 function getFilteredChallenges() {
+  let filtered;
+
   if (state.currentChallengeType === "all") {
-    return challenges;
+    filtered = challenges;
+  } else {
+    filtered = challenges.filter(c => c.type === state.currentChallengeType);
   }
-  return challenges.filter(c => c.type === state.currentChallengeType);
+
+  // Filtrar desafíos ya resueltos
+  const unsolved = filtered.filter(c => {
+    const id = getChallengeId(c);
+    return !state.solvedChallenges.includes(id);
+  });
+
+  // Si todos están resueltos, permitir repetir (resetear para esa categoría)
+  if (unsolved.length === 0 && filtered.length > 0) {
+    showNotification("🎉 ¡Completaste todos los desafíos! Puedes repetirlos.");
+    return filtered;
+  }
+
+  return unsolved;
 }
 
 function loadChallenge() {
@@ -602,11 +866,19 @@ function loadChallenge() {
 function renderChallenge() {
   const challenge = state.currentChallenge;
 
+  // Actualizar badge del desafío diario
+  updateDailyChallengeBadge();
+
   // Actualizar badge y dificultad
   const typeNames = {
     logic: "🤔 Lógica",
-    code: "💻 ¿Qué imprime?",
-    trivia: "🎲 Trivia"
+    code: "💻 Código",
+    trivia: "🎲 Trivia",
+    arrays: "📊 Arrays",
+    strings: "📝 Strings",
+    algorithms: "🧮 Algoritmos",
+    frontend: "🎨 Frontend",
+    backend: "⚙️ Backend"
   };
   elements.challengeTypeBadge.textContent = typeNames[challenge.type];
 
@@ -657,6 +929,18 @@ function handleChallengeAnswer(selectedIndex) {
 
   if (isCorrect) {
     state.challengesSolved++;
+
+    // Marcar desafío como resuelto
+    const challengeId = getChallengeId(challenge);
+    if (!state.solvedChallenges.includes(challengeId)) {
+      state.solvedChallenges.push(challengeId);
+    }
+
+    // Actualizar racha solo si acierta
+    updateStreak();
+
+    // Verificar si completó el desafío diario
+    checkDailyChallenge();
   }
 
   // Actualizar UI
@@ -675,7 +959,8 @@ function handleChallengeAnswer(selectedIndex) {
   // Mostrar resultado
   showChallengeResult(isCorrect);
 
-  // Actualizar estadísticas
+  // Actualizar estadísticas (barra superior y vista)
+  updateStats();
   updateChallengeStats();
   checkAchievements();
   saveState();
@@ -700,6 +985,7 @@ function revealAnswer() {
   });
 
   showChallengeResult(false, true);
+  updateStats();
   updateChallengeStats();
   saveState();
 }
@@ -753,6 +1039,26 @@ function setChallengeType(type) {
   loadChallenge();
 }
 
+function resetSolvedChallenges() {
+  if (state.solvedChallenges.length === 0) {
+    showNotification("⚠️ No hay desafíos resueltos para resetear");
+    return;
+  }
+
+  // Confirmar antes de resetear
+  const confirmReset = confirm(
+    `¿Seguro que quieres resetear los ${state.solvedChallenges.length} desafíos resueltos?\n\n` +
+    "Podrás volver a intentarlos todos, pero tu contador de desafíos completados se mantendrá."
+  );
+
+  if (confirmReset) {
+    state.solvedChallenges = [];
+    saveState();
+    loadChallenge(); // Cargar un nuevo desafío
+    showNotification("✅ Desafíos reseteados. ¡Puedes intentarlos de nuevo!");
+  }
+}
+
 // ===== NAVEGACIÓN DE PESTAÑAS (actualizar) =====
 function switchTab(tabName) {
   // Actualizar pestañas
@@ -774,29 +1080,76 @@ function switchTab(tabName) {
   });
 
   // Cargar contenido de la vista
-  if (tabName === "favorites") {
-    renderFavorites();
-  } else if (tabName === "achievements") {
+  if (tabName === "achievements") {
     renderAchievements();
   } else if (tabName === "challenges") {
     if (!state.currentChallenge) {
       loadChallenge();
     }
     updateChallengeStats();
+  } else if (tabName === "ranking") {
+    if (window.supabaseFunctions) {
+      window.supabaseFunctions.renderLeaderboard();
+    }
+  } else if (tabName === "stats") {
+    renderStatsView();
+  }
+}
+
+// ===== VISTA DE ESTADÍSTICAS/PERFIL =====
+function renderStatsView() {
+  // Implementar vista de estadísticas
+  const accuracy = state.challengesAttempted > 0
+    ? Math.round((state.challengesSolved / state.challengesAttempted) * 100)
+    : 0;
+
+  if (elements.statsView) {
+    elements.statsView.innerHTML = `
+      <h2 class="view-title">📈 Tus Estadísticas</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">🧩</span>
+          <span class="stat-value">${state.challengesSolved}</span>
+          <span class="stat-label">Completados</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🎯</span>
+          <span class="stat-value">${accuracy}%</span>
+          <span class="stat-label">Precisión</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🔥</span>
+          <span class="stat-value">${state.streak}</span>
+          <span class="stat-label">Mejor Racha</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">💯</span>
+          <span class="stat-value">${state.challengesSolved * 10}</span>
+          <span class="stat-label">Puntos Totales</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; text-align: center;">
+        <button id="reset-challenges-btn" class="action-btn secondary-btn">
+          🔄 Resetear Desafíos Resueltos
+        </button>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+          Permite volver a intentar todos los desafíos que ya completaste
+        </p>
+      </div>
+    `;
+
+    // Re-añadir event listener al botón (porque se recreó el elemento)
+    const resetBtn = document.getElementById("reset-challenges-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", resetSolvedChallenges);
+    }
   }
 }
 
 // ===== EVENT LISTENERS =====
-elements.newQuoteBtn.addEventListener("click", newQuote);
-elements.favoriteBtn.addEventListener("click", toggleFavorite);
-elements.shareBtn.addEventListener("click", shareQuote);
-
 elements.tabs.forEach(tab => {
   tab.addEventListener("click", () => switchTab(tab.dataset.tab));
-});
-
-elements.categoryBtns.forEach(btn => {
-  btn.addEventListener("click", () => setCategory(btn.dataset.category));
 });
 
 elements.nextChallengeBtn.addEventListener("click", loadChallenge);
@@ -806,9 +1159,58 @@ elements.challengeTypeBtns.forEach(btn => {
   btn.addEventListener("click", () => setChallengeType(btn.dataset.type));
 });
 
+// Event listeners de ranking
+if (elements.saveUsernameBtn) {
+  elements.saveUsernameBtn.addEventListener("click", async () => {
+    const username = elements.usernameInput.value;
+    if (window.supabaseFunctions) {
+      const success = await window.supabaseFunctions.saveUsername(username);
+      if (success) {
+        elements.usernameInput.value = "";
+        window.supabaseFunctions.renderLeaderboard();
+      }
+    }
+  });
+}
+
+if (elements.usernameInput) {
+  elements.usernameInput.addEventListener("keypress", async (e) => {
+    if (e.key === "Enter") {
+      const username = elements.usernameInput.value;
+      if (window.supabaseFunctions) {
+        const success = await window.supabaseFunctions.saveUsername(username);
+        if (success) {
+          elements.usernameInput.value = "";
+          window.supabaseFunctions.renderLeaderboard();
+        }
+      }
+    }
+  });
+}
+
+if (elements.syncBtn) {
+  elements.syncBtn.addEventListener("click", async () => {
+    if (window.supabaseFunctions) {
+      showNotification("🔄 Sincronizando...");
+      await window.supabaseFunctions.syncRanking();
+      await window.supabaseFunctions.renderLeaderboard();
+      showNotification("✅ ¡Sincronizado!");
+    }
+  });
+}
+
 // ===== INICIALIZACIÓN =====
 loadState();
+checkStreakOnLoad(); // Verificar racha al iniciar
 updateStats();
-newQuote();
 renderAchievements();
 updateChallengeStats();
+
+// Cargar desafío inicial y mostrar vista de desafíos por defecto
+loadChallenge();
+switchTab('challenges');
+
+// Inicializar Supabase
+if (window.supabaseFunctions) {
+  window.supabaseFunctions.initSupabase();
+}
